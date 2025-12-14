@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>C5 Vision – Sistema de Monitoreo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/css/styles.css">
+
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin=""
+    />
+</head>
+
+<body>
+
+<header class="main-header">
+    <div class="logo">C5<span>Vision</span></div>
+
+    <nav class="main-nav">
+        <a href="#inicio" class="nav-link active">Inicio</a>
+
+        <!-- IMPORTANTe: Mapa se controla con JS -->
+        <a href="/mapa" class="nav-link" id="nav-mapa">Mapa</a>
+
+        <a href="#camaras" class="nav-link">Cámaras</a>
+        <a href="#reportes" class="nav-link">Reportes</a>
+    </nav>
+
+    <div class="auth-actions" id="auth-actions">
+        <button class="btn ghost" id="btn-login-header" type="button">Iniciar sesión</button>
+        <button class="btn small primary" id="btn-register-header" type="button">Crear cuenta</button>
+    </div>
+</header>
+
+<main>
+
+    <section id="inicio" class="hero">
+        <div class="hero-text">
+            <h1>Sistema de Monitoreo C5</h1>
+            <p>
+                Plataforma para visualizar, administrar y optimizar la ubicación
+                de cámaras de videovigilancia en zonas urbanas.
+            </p>
+
+            <div class="hero-actions">
+                <!-- IMPORTANTe: se controla con JS -->
+                <button class="btn primary" id="btn-ver-mapa" type="button">
+                    Ver mapa
+                </button>
+
+                <button class="btn secondary" type="button" onclick="scrollToSection('camaras')">
+                    Ir a cámaras
+                </button>
+
+                <button class="btn ghost" id="btn-register-hero" type="button">
+                    Crear cuenta
+                </button>
+            </div>
+        </div>
+
+        <div class="hero-illustration">
+            <div class="map-placeholder">
+                MAPA INTERACTIVO (OPENSTREETMAP)
+            </div>
+        </div>
+    </section>
+
+    <section class="cards-section">
+        <h2>Resumen del Sistema</h2>
+
+        <div class="cards-grid">
+            <div class="card">
+                <h3>Cámaras activas</h3>
+                <p class="card-number" id="stat-camaras">0</p>
+                <p class="card-desc">Total de cámaras registradas.</p>
+            </div>
+
+            <div class="card">
+                <h3>Zonas monitoreadas</h3>
+                <p class="card-number" id="stat-zonas">0</p>
+                <p class="card-desc">Áreas con monitoreo activo.</p>
+            </div>
+
+            <div class="card">
+                <h3>Alertas recientes</h3>
+                <p class="card-number" id="stat-alertas">0</p>
+                <p class="card-desc">Incidentes de las últimas 24 horas.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="camaras" class="content-section placeholder-section">
+        <div class="camaras-header">
+            <div>
+                <h2>Gestión de Cámaras</h2>
+                <p class="camaras-subtitle">
+                    Estas son las cámaras actualmente registradas en el sistema C5.
+                </p>
+            </div>
+
+            <button class="btn secondary" id="btn-refrescar-camaras" type="button">
+                Actualizar lista
+            </button>
+        </div>
+
+        <div class="camaras-table-wrapper">
+            <table class="camaras-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Latitud</th>
+                        <th>Longitud</th>
+                        <th>Rango (m)</th>
+                        <th>Tipo</th>
+                        <th>Descripción</th>
+                    </tr>
+                </thead>
+
+                <tbody id="tabla-camaras-body">
+                    <tr>
+                        <td colspan="6" class="camaras-empty">Cargando cámaras...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="reportes" class="content-section placeholder-section">
+        <h2>Reportes</h2>
+        <p>Gráficas y datos estadísticos del monitoreo.</p>
+    </section>
+
+</main>
+
+<footer class="main-footer">
+    Proyecto C5 – Prototipo Académico
+</footer>
+
+<!-- ===================================================== -->
+<!-- MODAL: REGISTRO -->
+<!-- ===================================================== -->
+<div class="modal-overlay" id="modal-register-overlay" aria-hidden="true">
+    <div class="modal-card">
+        <div class="modal-header">
+            <h3>Crear cuenta</h3>
+            <button class="modal-close" id="close-register" type="button">×</button>
+        </div>
+
+        <form id="form-register" class="modal-form">
+            <div class="form-row">
+                <label>Nombre</label>
+                <input id="reg-nombre" type="text" required />
+            </div>
+
+            <div class="form-row">
+                <label>Primer apellido</label>
+                <input id="reg-apellido1" type="text" required />
+            </div>
+
+            <div class="form-row">
+                <label>Segundo apellido</label>
+                <input id="reg-apellido2" type="text" required />
+            </div>
+
+            <div class="form-row">
+                <label>Correo</label>
+                <input id="reg-email" type="email" required />
+            </div>
+
+            <div class="form-row">
+                <label>Contraseña</label>
+                <div class="password-wrap">
+                    <input id="reg-password" type="password" required />
+                    <button class="password-toggle" type="button" data-target="reg-password">
+                        <span class="icon-eye">👁</span>
+                        <span class="icon-eye-off hidden">🚫</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <label>Confirmar contraseña</label>
+                <div class="password-wrap">
+                    <input id="reg-password2" type="password" required />
+                    <button class="password-toggle" type="button" data-target="reg-password2">
+                        <span class="icon-eye">👁</span>
+                        <span class="icon-eye-off hidden">🚫</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn primary" type="submit">Registrarme</button>
+                <button class="btn ghost" type="button" id="close-register-2" onclick="document.getElementById('close-register').click()">
+                    Cancelar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- ===================================================== -->
+<!-- MODAL: LOGIN -->
+<!-- ===================================================== -->
+<div class="modal-overlay" id="modal-login-overlay" aria-hidden="true">
+    <div class="modal-card">
+        <div class="modal-header">
+            <h3>Iniciar sesión</h3>
+            <button class="modal-close" id="close-login" type="button">×</button>
+        </div>
+
+        <form id="form-login" class="modal-form">
+            <div class="form-row">
+                <label>Correo</label>
+                <input id="login-email" type="email" required />
+            </div>
+
+            <div class="form-row">
+                <label>Contraseña</label>
+                <div class="password-wrap">
+                    <input id="login-password" type="password" required />
+                    <button class="password-toggle" type="button" data-target="login-password">
+                        <span class="icon-eye">👁</span>
+                        <span class="icon-eye-off hidden">🚫</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn primary" type="submit">Entrar</button>
+                <button class="btn ghost" type="button" onclick="document.getElementById('close-login').click()">
+                    Cancelar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- ===================================================== -->
+<!-- MODAL: ÉXITO -->
+<!-- ===================================================== -->
+<div class="modal-overlay" id="modal-success-overlay" aria-hidden="true">
+    <div class="modal-card">
+        <div class="modal-header">
+            <h3>Listo</h3>
+            <button class="modal-close" id="close-success" type="button">×</button>
+        </div>
+
+        <div class="modal-body">
+            <p class="success-text">Te has registrado correctamente.</p>
+        </div>
+
+        <div class="modal-actions">
+            <button class="btn primary" id="btn-success-login" type="button">
+                Iniciar sesión
+            </button>
+        </div>
+    </div>
+</div>
+
+<script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin="">
+</script>
+
+<!-- Cache-buster IMPORTANTe -->
+<script src="/js/main_v2.js?v=7"></script>
+
+<!-- Auto-abrir modales con hash: #login / #register -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const hash = (window.location.hash || "").toLowerCase();
+
+    const modalLogin = document.getElementById("modal-login-overlay");
+    const modalRegister = document.getElementById("modal-register-overlay");
+
+    function openModal(modal) {
+        if (modal) modal.classList.add("active");
+    }
+
+    if (hash === "#login") {
+        openModal(modalLogin);
+    } else if (hash === "#register") {
+        openModal(modalRegister);
+    }
+});
+</script>
+
+</body>
+</html>
