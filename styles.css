@@ -1,0 +1,795 @@
+/* RESET BÁSICO */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #050814;
+    color: #f5f5f5;
+    line-height: 1.5;
+}
+
+/* LAYOUT GENERAL */
+main {
+    padding: 90px 5% 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* HEADER */
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 64px;
+    padding: 0 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(90deg, #050814, #111827);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    z-index: 100;
+}
+
+.logo {
+    font-weight: 700;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    color: #3b82f6;
+}
+
+.main-nav {
+    display: flex;
+    gap: 1rem;
+}
+
+.main-nav .nav-link {
+    color: #e5e7eb;
+    text-decoration: none;
+    font-size: 0.95rem;
+    padding: 6px 10px;
+    border-radius: 999px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.main-nav .nav-link:hover {
+    background: rgba(59, 130, 246, 0.1);
+}
+
+.main-nav .nav-link.active {
+    background: #3b82f6;
+    color: #ffffff;
+}
+
+/* BOTONES GENERALES */
+.btn {
+    border: none;
+    cursor: pointer;
+    padding: 0.7rem 1.4rem;
+    border-radius: 999px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.2s;
+}
+
+.btn.primary {
+    background: #3b82f6;
+    color: #ffffff;
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
+}
+
+.btn.primary:hover {
+    background: #2563eb;
+    transform: translateY(-1px);
+}
+
+.btn.secondary {
+    background: transparent;
+    color: #e5e7eb;
+    border: 1px solid rgba(148, 163, 184, 0.7);
+}
+
+.btn.secondary:hover {
+    background: rgba(148, 163, 184, 0.1);
+}
+
+.btn.small {
+    padding: 0.45rem 0.9rem;
+    font-size: 0.8rem;
+}
+
+.btn.ghost {
+    background: transparent;
+    color: #e5e7eb;
+    border: 1px solid rgba(148, 163, 184, 0.7);
+}
+
+.btn.ghost:hover {
+    background: rgba(148, 163, 184, 0.1);
+}
+
+.btn.full {
+    width: 100%;
+}
+
+/* Botón rojo cerrar sesión genérico (.btn.danger) */
+.btn.danger {
+    background: #dc2626;
+    color: #ffffff;
+    box-shadow: 0 10px 25px rgba(220, 38, 38, 0.4);
+}
+
+.btn.danger:hover {
+    background: #b91c1c;
+}
+
+/* HERO */
+.hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+    gap: 2.5rem;
+    align-items: center;
+    margin-top: 1.5rem;
+}
+
+.hero-text h1 {
+    font-size: 2.2rem;
+    margin-bottom: 0.75rem;
+}
+
+.hero-text p {
+    color: #9ca3af;
+    margin-bottom: 1.5rem;
+    max-width: 520px;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+/* ILUSTRACIÓN / MAP PLACEHOLDER */
+.hero-illustration {
+    display: flex;
+    justify-content: center;
+}
+
+.map-placeholder {
+    width: 100%;
+    min-height: 200px;
+    border-radius: 1rem;
+    border: 1px dashed rgba(148, 163, 184, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at top, #1d4ed8 0, #020617 60%);
+    color: #e5e7eb;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    opacity: 0.9;
+}
+
+.map-placeholder.large {
+    min-height: 260px;
+}
+
+/* CARDS RESUMEN */
+.cards-section {
+    margin-top: 3rem;
+}
+
+.cards-section h2 {
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 1.5rem;
+}
+
+.card {
+    background: #020617;
+    border-radius: 1rem;
+    padding: 1.2rem 1.3rem;
+    border: 1px solid rgba(148, 163, 184, 0.25);
+    box-shadow: 0 12px 25px rgba(15, 23, 42, 0.6);
+}
+
+.card h3 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.card-number {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #3b82f6;
+    margin-bottom: 0.15rem;
+}
+
+.card-desc {
+    font-size: 0.9rem;
+    color: #9ca3af;
+}
+
+/* SECCIONES PLACEHOLDER */
+.placeholder-section {
+    margin-top: 3rem;
+}
+
+.placeholder-section h2 {
+    font-size: 1.35rem;
+    margin-bottom: 0.8rem;
+}
+
+.placeholder-section p {
+    color: #9ca3af;
+    margin-bottom: 1rem;
+}
+
+/* FOOTER */
+.main-footer {
+    padding: 1.3rem 5%;
+    border-top: 1px solid rgba(148, 163, 184, 0.2);
+    text-align: center;
+    color: #6b7280;
+    font-size: 0.85rem;
+    margin-top: 3rem;
+}
+
+/* HEADER: acciones auth */
+.auth-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* ========= MODALES ========= */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.8);
+    display: none;              /* oculto por defecto */
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal {
+    background: #020617;
+    border-radius: 1rem;
+    padding: 1.5rem 1.8rem;
+    width: 100%;
+    max-width: 420px;
+    border: 1px solid rgba(148, 163, 184, 0.3);
+    box-shadow: 0 22px 40px rgba(15, 23, 42, 0.8);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.modal-header h2 {
+    font-size: 1.2rem;
+}
+
+.modal-close {
+    border: none;
+    background: transparent;
+    color: #9ca3af;
+    font-size: 1.5rem;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.modal-close:hover {
+    color: #e5e7eb;
+}
+
+/* FORMULARIOS EN MODAL */
+
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.form-row label {
+    font-size: 0.85rem;
+    color: #e5e7eb;
+}
+
+.form-row input {
+    border-radius: 0.6rem;
+    border: 1px solid rgba(148, 163, 184, 0.6);
+    padding: 0.55rem 0.7rem;
+    background: #020617;
+    color: #f9fafb;
+    font-size: 0.9rem;
+}
+
+.form-row input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.6);
+}
+
+.form-actions {
+    margin-top: 0.3rem;
+}
+
+.form-note {
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+    color: #9ca3af;
+}
+
+/* ====== CAMPOS DE CONTRASEÑA (mostrar/ocultar) ====== */
+.password-field {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-field input {
+    flex: 1;
+    padding-right: 2.5rem;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 0.4rem;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.password-toggle svg {
+    width: 22px;
+    height: 22px;
+    stroke: #9ca3af;
+    fill: none;
+    stroke-width: 2;
+    transition: stroke 0.2s ease, opacity 0.2s ease;
+}
+
+.password-toggle:hover svg {
+    stroke: #ffffff;
+}
+
+.icon-eye-off {
+    opacity: 0.9;
+}
+
+.hidden {
+    display: none;
+}
+
+/* ====== MODAL PEQUEÑO DE ÉXITO ====== */
+.modal.small {
+    max-width: 360px;
+    text-align: center;
+}
+
+.success-text {
+    color: #e5e7eb;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+/* RESPONSIVE GENERAL */
+@media (max-width: 840px) {
+    .hero {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-illustration {
+        order: -1;
+    }
+
+    .main-header {
+        padding-inline: 1rem;
+    }
+
+    main {
+        padding-inline: 1rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .main-nav {
+        gap: 0.4rem;
+    }
+
+    .main-nav .nav-link {
+        font-size: 0.8rem;
+        padding-inline: 0.6rem;
+    }
+
+    .hero-text h1 {
+        font-size: 1.7rem;
+    }
+}
+
+/* ========= TABLA DE CÁMARAS ========= */
+
+.camaras-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+}
+
+.camaras-subtitle {
+    color: #9ca3af;
+    font-size: 0.85rem;
+}
+
+.camaras-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.camaras-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #020617;
+    border-radius: 0.8rem;
+    overflow: hidden;
+    font-size: 0.85rem;
+    border: 1px solid rgba(148, 163, 184, 0.3);
+}
+
+.camaras-table thead {
+    background: rgba(15, 23, 42, 0.9);
+}
+
+.camaras-table th,
+.camaras-table td {
+    padding: 0.55rem 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+}
+
+.camaras-table th {
+    font-weight: 600;
+    color: #e5e7eb;
+}
+
+.camaras-table tbody tr:nth-child(even) {
+    background: rgba(15, 23, 42, 0.85);
+}
+
+.camaras-table tbody tr:hover {
+    background: rgba(37, 99, 235, 0.15);
+}
+
+.camaras-table td {
+    color: #d1d5db;
+}
+
+.camaras-empty {
+    text-align: center;
+    color: #9ca3af;
+    padding: 0.8rem 0.75rem;
+}
+
+/* ====== MAPA LEAFLET (contenedor) ====== */
+.map-container {
+    width: 100%;
+    height: 480px;
+    border-radius: 1rem;
+    overflow: hidden;
+    border: 1px solid rgba(148, 163, 184, 0.3);
+    box-shadow: 0 20px 35px rgba(15, 23, 42, 0.8);
+}
+
+/* ====== USUARIO LOGUEADO EN HEADER ====== */
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.user-name {
+    font-size: 0.85rem;
+    color: #e5e7eb;
+    opacity: 0.9;
+}
+
+/* ====== LAYOUT MAPA + LEYENDA ====== */
+.map-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.map-wrapper {
+    width: 100%;
+}
+
+.map-legend-card {
+    background: #020617;
+    border-radius: 1rem;
+    padding: 1.2rem 1.4rem;
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    box-shadow: 0 16px 30px rgba(15, 23, 42, 0.8);
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    font-size: 0.85rem;
+}
+
+.map-legend-card h2 {
+    font-size: 1rem;
+    margin-bottom: 0.2rem;
+}
+
+.legend-note {
+    font-size: 0.8rem;
+    color: #9ca3af;
+}
+
+.legend-note-small {
+    font-size: 0.78rem;
+    color: #9ca3af;
+}
+
+/* Lista de elementos de la leyenda */
+.map-legend-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding-left: 0;
+    margin-bottom: 0.5rem;
+}
+
+.map-legend-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    color: #e5e7eb;
+}
+
+.legend-separator {
+    margin-top: 0.5rem;
+    padding-top: 0.4rem;
+    border-top: 1px solid rgba(148, 163, 184, 0.35);
+    font-size: 0.8rem;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Puntitos de color de la leyenda */
+.legend-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 999px;
+    display: inline-block;
+    margin-right: 0.5rem;
+}
+
+/* Cámara actual (igual que el círculo azul que ya tenemos) */
+.legend-dot.dot-actual {
+    background: #3b82f6;
+}
+
+/* Cámara propuesta por el algoritmo (naranja) */
+.legend-dot.dot-propuesta {
+    background: #f97316;
+}
+
+/* Cobertura 100 % */
+.legend-dot.dot-verde {
+    background: #22c55e;
+}
+
+/* Cobertura 80–99 % */
+.legend-dot.dot-morado {
+    background: #a855f7;
+}
+
+/* Cobertura 50–79 % */
+.legend-dot.dot-celeste {
+    background: #38bdf8;
+}
+
+/* Responsive mapa/leyenda */
+@media (max-width: 900px) {
+    .map-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .map-legend-card {
+        width: 100%;
+    }
+}
+
+/* ====== PANEL DE SIMULACIÓN EN /mapa ====== */
+
+.sim-header {
+    display: flex;
+    flex-direction: column;   /* título arriba, botones abajo */
+    gap: 0.9rem;              /* MÁS espacio entre título y botones */
+    margin-bottom: 1rem;      /* separación con la lista */
+}
+
+.sim-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+/* Contenedor de los botones del header (Guardar ≥80%, Quitar propuestas) */
+.sim-header-buttons {
+    display: flex;
+    flex-direction: column;   /* botones uno abajo del otro */
+    gap: 0.6rem;              /* separación visible entre botones */
+}
+
+.sim-header-buttons .btn {
+    width: 100%;              /* que ocupen el ancho de la tarjeta */
+}
+
+/* Botón rojo estilo ghost para acciones peligrosas */
+.btn-danger {
+    border-color: rgba(248, 113, 113, 0.7);
+    color: #fecaca;
+}
+
+.btn-danger:hover {
+    background: rgba(248, 113, 113, 0.12);
+}
+
+/* Lista de cámaras simuladas */
+.simulated-cameras-list {
+    list-style: none;
+    margin-top: 0.5rem;
+    padding-left: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    max-height: 260px;
+    overflow-y: auto;
+}
+
+.simulated-cameras-list li {
+    font-size: 0.8rem;
+    color: #e5e7eb;
+    padding: 0.45rem 0.55rem;
+    border-radius: 0.6rem;
+    background: rgba(15, 23, 42, 0.9);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+/* Estructura interna por línea */
+.simulated-cameras-list .sim-line-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.simulated-cameras-list .sim-line-bottom {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.35rem;
+    margin-top: 0.2rem;
+    flex-wrap: wrap;
+}
+
+.sim-coverage {
+    font-size: 0.75rem;
+    color: #a5b4fc;
+}
+
+.sim-coords {
+    font-size: 0.7rem;
+    color: #9ca3af;
+}
+
+/* Versión para cuando usamos sim-item-main/sim-item-actions desde JS */
+.sim-item-main {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.sim-item-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-top: 0.25rem;
+    justify-content: flex-end;
+}
+
+.sim-item-coords {
+    color: #9ca3af;
+    font-size: 0.78rem;
+}
+
+.sim-item-coverage {
+    font-size: 0.75rem;
+    color: #a5b4fc;
+}
+
+.sim-empty {
+    font-size: 0.8rem;
+    color: #9ca3af;
+}
+/* ===== Leaflet map fix ===== */
+#map {
+  width: 100%;
+  height: 520px;     /* ajusta a tu gusto */
+  min-height: 420px; /* evita que colapse */
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+/* Si el mapa está dentro de algún contenedor, asegúrate que NO tenga height: auto/0 */
+.map-wrapper,
+.map-card,
+.map-container {
+  min-height: 520px;
+}
+/* FIX Leaflet: muchos estilos globales rompen los tiles */
+.leaflet-container img {
+  max-width: none !important;
+  max-height: none !important;
+}
+
+.leaflet-tile {
+  max-width: none !important;
+  max-height: none !important;
+}
+
+.leaflet-container {
+  background: #e5e7eb; /* opcional: evita fondo negro/gris feo mientras carga */
+}
+/* Leaflet: no aplastar tiles por CSS global */
+.leaflet-container img {
+  max-width: none !important;
+  max-height: none !important;
+}
+
+
